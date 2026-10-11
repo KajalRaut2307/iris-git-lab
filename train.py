@@ -2,7 +2,7 @@ import joblib
 from sklearn.datasets import load_iris
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 
 def train(test_size=0.2, max_iter=300):
     """
@@ -14,9 +14,11 @@ def train(test_size=0.2, max_iter=300):
     model = LogisticRegression(max_iter=max_iter, C=1.0)
     model.fit(X_tr, y_tr)
     acc = accuracy_score(y_te, model.predict(X_te))
-    return model, acc
+    f1score = f1_score(y_te, model.predict(X_te), average="weighted")
+    return model, acc, f1score
 
 if __name__ == "__main__":
-    model, acc = train()
+    model, acc, f1score = train()
     print(f"accuracy: {acc:.3f}")
+    print(f"f1 score: {f1score:.3f}")
     joblib.dump(model, "model.joblib")
