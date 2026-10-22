@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, f1_score
 
-def train(test_size=0.2, max_iter=300):
+def train(test_size=0.2, max_iter=500):
     """
     function train:
     returns: model and accuracy
