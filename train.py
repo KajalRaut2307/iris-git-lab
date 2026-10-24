@@ -2,7 +2,7 @@ import joblib
 from sklearn.datasets import load_iris
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
 
 def train(test_size=0.2, max_iter=1000):
     """
@@ -15,6 +15,9 @@ def train(test_size=0.2, max_iter=1000):
     model.fit(X_tr, y_tr)
     acc = accuracy_score(y_te, model.predict(X_te))
     f1score = f1_score(y_te, model.predict(X_te), average="weighted")
+    conf_matrix = confusion_matrix(y_te, model.predict(X_te))
+    print("Confusion Matrix:")
+    print(conf_matrix)
     return model, acc, f1score
 
 if __name__ == "__main__":
